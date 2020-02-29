@@ -1,5 +1,8 @@
-var express = require('express'),
-app = express(),
+var express = require('express');
+var cors = require('cors');
+
+app = express();
+app.use(cors());
 port = process.env.PORT || 3000;
 jwt = require('jsonwebtoken'),
 mongoose = require('mongoose'),

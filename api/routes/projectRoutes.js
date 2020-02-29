@@ -1,12 +1,12 @@
 'use strict';
 module.exports = function (app) {
-    var team = require('../controllers/projectController');
+    var project = require('../controllers/projectController');
 
     app.route('/projects')
-        .get(team.listAll)
-        .post(team.add);
+        .get(project.listAll)
+        .post(project.add);
 
     app.route('/projects/:projectId')
-        .put(team.update)
-        .get(team.get);
+        .put(project.update)
+        .get(project.get);
 };

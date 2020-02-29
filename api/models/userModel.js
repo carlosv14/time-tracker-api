@@ -21,7 +21,7 @@ var UserSchema = new Schema({
     enum: ['admin', 'non-admin'],
     default: 'non-admin'
   },
-  user:{
+  team:{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Team'
   }
