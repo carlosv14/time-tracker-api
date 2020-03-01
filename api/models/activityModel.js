@@ -26,15 +26,17 @@ var ActivitySchema = new Schema({
 });
 
 ActivitySchema.pre('save', function (next) {
-    let diff = this.endTime - this.startTime
-    this.time = diff / 60 / 60 / 1000;
+    let diff = this.endTime - this.startTime;
+    diff = diff / 60 / 60 / 1000;
+    this.time = Math.round((diff + Number.EPSILON) * 100) / 100;
     next();
 });
 
 ActivitySchema.pre('findOneAndUpdate', function(next){
     let diff = new Date(this.getUpdate().endTime) - new Date(this.getUpdate().startTime);
     console.log(diff);
-    this.getUpdate().time = diff / 60 / 60 / 1000;
+    diff = diff / 60 / 60 / 1000;
+    this.getUpdate().time = Math.round((diff + Number.EPSILON) * 100) / 100;
     console.log(this.getUpdate());
     next();
 });
