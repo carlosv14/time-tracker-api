@@ -22,6 +22,11 @@ var ActivitySchema = new Schema({
     },
     time: {
         type: Number
+    },
+    user:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: 'Please enter user'
     }
 });
 

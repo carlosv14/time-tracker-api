@@ -1,3 +1,3 @@
 module.exports = {
-    llave: "claveultrasecreta123*"
+    key: "claveultrasecreta123*"
 }

@@ -12,6 +12,9 @@ exports.listAll = function (req, res) {
 };
 
 exports.add = function (req, res) {
+    if(!req.isAdmin){
+        return res.status(401).send("Unauthorized user!");
+    }
     let newTeam = new Team(req.body);
     newTeam.save(function (err, team) {
         if (err) {
@@ -33,6 +36,9 @@ exports.get = function (req, res) {
 }
 
 exports.update = function (req, res) {
+    if(!req.isAdmin){
+        return res.status(401).send("Unauthorized user!");
+    }
     Teams.findOneAndUpdate({ _id: req.params.teamId }, req.body, { new: true }, function (err, team) {
         if(err){
             res.send(err);

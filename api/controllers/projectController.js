@@ -12,6 +12,9 @@ exports.listAll = function (req, res) {
 };
 
 exports.add = function (req, res) {
+    if(!req.isAdmin){
+        return res.status(401).send("Unauthorized user!");
+    }
     let newProject = new Project(req.body);
     newProject.save(function (err, project) {
         if (err) {
@@ -29,10 +32,13 @@ exports.get = function (req, res) {
                 res.send(err);
             }
             res.json(project);
-        });;
+        });
 }
 
 exports.update = function (req, res) {
+    if(!req.isAdmin){
+        return res.status(401).send("Unauthorized user!");
+    }
     Projects.findOneAndUpdate({ _id: req.params.projectId }, req.body, { new: true }, function (err, project) {
         if(err){
             res.send(err);
